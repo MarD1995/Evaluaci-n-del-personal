@@ -2,33 +2,95 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Evaluación de Competencias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Personal - Hornos</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .signature-pad { border: 1px solid #ccc; width: 100%; height: 200px; }
+    </style>
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
-      const { useState, useMemo, useCallback, useRef, useEffect } = React;
+        const { useState, useMemo } = React;
 
-      // --- TU CÓDIGO COMIENZA AQUÍ ---
-      function App() {
-          // Pega aquí desde donde dice "const AUTHORIZED_USERS" 
-          // hasta el final de tu código de React.
-          // OJO: NO pegues las líneas que dicen "import ... from ..."
-          
-          return (
-            <div className="min-h-screen bg-slate-50 p-4">
-                <h1 className="text-2xl font-bold">Acceso al Sistema</h1>
-                {/* Aquí va el resto de tu interfaz */}
-            </div>
-          );
-      }
+        const AUTHORIZED_USERS = [
+            { email: 'marlon@empresa.com', password: '123', name: 'Marlon Ruiz', assignedArea: 'Hornos eléctricos' },
+            { email: 'admin@empresa.com', password: 'admin', name: 'Administrador', assignedArea: 'TALENTO Y DESARROLLO HUMANO' }
+        ];
 
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<App />);
+        function App() {
+            const [user, setUser] = useState(null);
+            const [email, setEmail] = useState('');
+            const [pass, setPass] = useState('');
+
+            const handleLogin = (e) => {
+                e.preventDefault();
+                const found = AUTHORIZED_USERS.find(u => u.email === email && u.password === pass);
+                if (found) setUser(found);
+                else alert('Credenciales incorrectas');
+            };
+
+            if (!user) {
+                return (
+                    <div className="min-h-screen bg-[#004a7c] flex items-center justify-center p-4">
+                        <div className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
+                            <h2 className="text-2xl font-bold text-center mb-6 text-slate-800">Acceso al Sistema</h2>
+                            <form onSubmit={handleLogin} className="space-y-4">
+                                <input type="email" placeholder="Correo" className="w-full p-3 border rounded-xl" onChange={e => setEmail(e.target.value)} />
+                                <input type="password" placeholder="Contraseña" className="w-full p-3 border rounded-xl" onChange={e => setPass(e.target.value)} />
+                                <button className="w-full py-3 bg-[#004a7c] text-white rounded-xl font-bold">Iniciar Sesión</button>
+                            </form>
+                            <p className="mt-4 text-xs text-center text-slate-400">marlon@empresa.com / 123</p>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="min-h-screen bg-slate-50 p-6">
+                    <header className="flex justify-between items-center mb-8 border-b pb-4">
+                        <div>
+                            <h1 className="text-2xl font-bold text-[#004a7c]">Bienvenido, {user.name}</h1>
+                            <p className="text-slate-500">Área: {user.assignedArea}</p>
+                        </div>
+                        <button onClick={() => setUser(null)} className="text-red-500 font-bold">Salir</button>
+                    </header>
+                    
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border">
+                        <h3 className="font-bold mb-4">Evaluación de Competencias - Hornos Eléctricos</h3>
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100">
+                                    <th className="p-3 border">Competencia</th>
+                                    <th className="p-3 border">Juan Valdez</th>
+                                    <th className="p-3 border">Pedro Picapiedra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="p-3 border">Operación de Panel</td>
+                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
+                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
+                                </tr>
+                                <tr>
+                                    <td className="p-3 border">Seguridad en Fundición</td>
+                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
+                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button onClick={() => alert('Evaluación Guardada')} className="mt-6 px-6 py-2 bg-emerald-600 text-white rounded-xl font-bold">Guardar Cambios</button>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
