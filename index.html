@@ -3,87 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluación de Personal - Hornos</title>
+    <title>Evaluación de Competencias - Aceros Arequipa</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .signature-pad { border: 1px solid #ccc; width: 100%; height: 200px; }
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
-        const { useState, useMemo } = React;
-
-        const AUTHORIZED_USERS = [
-            { email: 'marlon@empresa.com', password: '123', name: 'Marlon Ruiz', assignedArea: 'Hornos eléctricos' },
-            { email: 'admin@empresa.com', password: 'admin', name: 'Administrador', assignedArea: 'TALENTO Y DESARROLLO HUMANO' }
-        ];
+        const { useState } = React;
 
         function App() {
             const [user, setUser] = useState(null);
-            const [email, setEmail] = useState('');
-            const [pass, setPass] = useState('');
-
-            const handleLogin = (e) => {
-                e.preventDefault();
-                const found = AUTHORIZED_USERS.find(u => u.email === email && u.password === pass);
-                if (found) setUser(found);
-                else alert('Credenciales incorrectas');
-            };
-
+            
+            // Simulación de Login para entrar directo a tu diseño
             if (!user) {
                 return (
-                    <div className="min-h-screen bg-[#004a7c] flex items-center justify-center p-4">
-                        <div className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
-                            <h2 className="text-2xl font-bold text-center mb-6 text-slate-800">Acceso al Sistema</h2>
-                            <form onSubmit={handleLogin} className="space-y-4">
-                                <input type="email" placeholder="Correo" className="w-full p-3 border rounded-xl" onChange={e => setEmail(e.target.value)} />
-                                <input type="password" placeholder="Contraseña" className="w-full p-3 border rounded-xl" onChange={e => setPass(e.target.value)} />
-                                <button className="w-full py-3 bg-[#004a7c] text-white rounded-xl font-bold">Iniciar Sesión</button>
-                            </form>
-                            <p className="mt-4 text-xs text-center text-slate-400">marlon@empresa.com / 123</p>
-                        </div>
+                    <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+                        <button onClick={() => setUser({name: 'Marlon Ruiz', area: 'Hornos eléctricos'})} 
+                                className="bg-[#004a7c] text-white px-10 py-4 rounded-full font-bold shadow-lg transform hover:scale-105 transition">
+                            INGRESAR AL SISTEMA PROFESIONAL
+                        </button>
                     </div>
                 );
             }
 
             return (
-                <div className="min-h-screen bg-slate-50 p-6">
-                    <header className="flex justify-between items-center mb-8 border-b pb-4">
-                        <div>
-                            <h1 className="text-2xl font-bold text-[#004a7c]">Bienvenido, {user.name}</h1>
-                            <p className="text-slate-500">Área: {user.assignedArea}</p>
+                <div className="min-h-screen bg-slate-50 p-4 md:p-8">
+                    {/* ENCABEZADO PROFESIONAL */}
+                    <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-sm p-6 mb-6 border-l-4 border-[#004a7c]">
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-4">
+                                <div className="bg-slate-200 p-3 rounded-full"><i className="fas fa-user text-[#004a7c]"></i></div>
+                                <div>
+                                    <h1 className="text-xl font-bold text-slate-800">Bienvenido, {user.name}</h1>
+                                    <p className="text-sm text-slate-500">Evaluador asignado a: <span className="font-semibold text-[#004a7c]">{user.area}</span></p>
+                                </div>
+                            </div>
+                            <button className="bg-[#00a650] text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2">
+                                <i className="fas fa-save"></i> Guardar Evaluación
+                            </button>
                         </div>
-                        <button onClick={() => setUser(null)} className="text-red-500 font-bold">Salir</button>
-                    </header>
-                    
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border">
-                        <h3 className="font-bold mb-4">Evaluación de Competencias - Hornos Eléctricos</h3>
-                        <table className="w-full text-left border-collapse">
-                            <thead>
-                                <tr className="bg-slate-100">
-                                    <th className="p-3 border">Competencia</th>
-                                    <th className="p-3 border">Juan Valdez</th>
-                                    <th className="p-3 border">Pedro Picapiedra</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td className="p-3 border">Operación de Panel</td>
-                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
-                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
-                                </tr>
-                                <tr>
-                                    <td className="p-3 border">Seguridad en Fundición</td>
-                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
-                                    <td className="p-3 border"><select className="w-full border p-1"><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button onClick={() => alert('Evaluación Guardada')} className="mt-6 px-6 py-2 bg-emerald-600 text-white rounded-xl font-bold">Guardar Cambios</button>
+                    </div>
+
+                    {/* LEYENDA DE COLORES */}
+                    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-center">
+                        <div className="bg-emerald-50 border border-emerald-200 p-2 rounded-xl text-emerald-700 text-sm font-medium">Mayor o igual al 70%: Aprobado</div>
+                        <div className="bg-amber-50 border border-amber-200 p-2 rounded-xl text-amber-700 text-sm font-medium">50% - 69%: Con oportunidad de mejora</div>
+                        <div className="bg-red-50 border border-red-200 p-2 rounded-xl text-red-700 text-sm font-medium">Menor a 50%: Desaprobado</div>
+                    </div>
+
+                    {/* TABLAS DE EVALUACIÓN */}
+                    <div className="max-w-6xl mx-auto space-y-6">
+                        <div className="overflow-hidden rounded-xl border shadow-sm bg-white">
+                            <div className="bg-[#004a7c] p-3 text-white font-bold flex items-center gap-2">
+                                <i className="fas fa-industry"></i> OPERADOR DE HORNO
+                            </div>
+                            <table className="w-full text-sm">
+                                <thead className="bg-slate-50 text-slate-600 uppercase text-xs font-bold">
+                                    <tr>
+                                        <th className="p-4 text-left">Competencias</th>
+                                        <th className="p-4 text-center">Juan Valdez</th>
+                                        <th className="p-4 text-center">Pedro Picapiedra</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y">
+                                    <tr>
+                                        <td className="p-4 font-medium text-slate-700">OPERACIÓN DE PANEL</td>
+                                        <td className="p-4 text-center"><select className="border rounded p-1 w-24 bg-slate-50"><option>-</option><option>3</option></select></td>
+                                        <td className="p-4 text-center"><select className="border rounded p-1 w-24 bg-slate-50"><option>-</option><option>3</option></select></td>
+                                    </tr>
+                                    <tr className="bg-slate-50/50">
+                                        <td className="p-4 font-bold text-[#004a7c] text-xs uppercase">Estado y Porcentaje</td>
+                                        <td className="p-4 text-center"><span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">Desaprobado 0%</span></td>
+                                        <td className="p-4 text-center"><span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">Desaprobado 0%</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* LEYENDA DE PUNTUACIÓN (Lo que me pediste) */}
+                        <div className="bg-white rounded-xl border shadow-sm overflow-hidden">
+                            <div className="bg-[#004a7c] p-3 text-white font-bold flex items-center gap-2 text-xs">
+                                <i className="fas fa-info-circle"></i> LEYENDA DE PUNTUACIÓN
+                            </div>
+                            <table className="w-full text-xs text-left">
+                                <thead className="bg-slate-50 border-b">
+                                    <tr>
+                                        <th className="p-3">Nivel</th>
+                                        <th className="p-3">Nombre Corto</th>
+                                        <th className="p-3">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y text-slate-600">
+                                    <tr><td className="p-3 font-bold text-[#004a7c]">NIVEL 0</td><td className="p-3 font-semibold">Desconoce</td><td className="p-3 italic">El colaborador desconoce los fundamentos básicos...</td></tr>
+                                    <tr><td className="p-3 font-bold text-[#004a7c]">NIVEL 1</td><td className="p-3 font-semibold">En aprendizaje</td><td className="p-3 italic">El colaborador evidencia conocimiento a nivel básico...</td></tr>
+                                    <tr><td className="p-3 font-bold text-[#004a7c]">NIVEL 2</td><td className="p-3 font-semibold">En desarrollo</td><td className="p-3 italic">El colaborador logra el desarrollo de la competencia...</td></tr>
+                                    <tr><td className="p-3 font-bold text-[#004a7c]">NIVEL 3</td><td className="p-3 font-semibold">Promedio</td><td className="p-3 italic">El colaborador evidencia el dominio de la competencia...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             );
