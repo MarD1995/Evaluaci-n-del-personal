@@ -82,4 +82,69 @@
                                         <tr>
                                             <td className="p-5 font-semibold text-slate-700 border-r">Operación de Panel</td>
                                             <td className="p-5 text-center border-r"><select className="w-24 border rounded-lg p-2 bg-slate-50 outline-none focus:ring-2 focus:ring-blue-200"><option>-</option><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
-                                            <td className="p-5 text-center"><select className="w-24 border rounded-lg p-
+                                            <td className="p-5 text-center"><select className="w-24 border rounded-lg p-2 bg-slate-50 outline-none focus:ring-2 focus:ring-blue-200"><option>-</option><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-5 font-semibold text-slate-700 border-r">Seguridad en Fundición</td>
+                                            <td className="p-5 text-center border-r"><select className="w-24 border rounded-lg p-2 bg-slate-50 outline-none focus:ring-2 focus:ring-blue-200"><option>-</option><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
+                                            <td className="p-5 text-center"><select className="w-24 border rounded-lg p-2 bg-slate-50 outline-none focus:ring-2 focus:ring-blue-200"><option>-</option><option>0</option><option>1</option><option>2</option><option>3</option></select></td>
+                                        </tr>
+                                        <tr className="bg-slate-100 font-black">
+                                            <td className="p-5 text-[#004a7c] uppercase text-xs border-r">Estado y Porcentaje</td>
+                                            <td className="p-5 text-center border-r"><span className="bg-red-100 text-red-600 px-4 py-1.5 rounded-full text-[10px] shadow-sm uppercase italic">Desaprobado 0%</span></td>
+                                            <td className="p-5 text-center"><span className="bg-red-100 text-red-600 px-4 py-1.5 rounded-full text-[10px] shadow-sm uppercase italic">Desaprobado 0%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* LEYENDA DE PUNTUACIÓN - ACTUALIZADA */}
+                    <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                        <div className="bg-[#004a7c] p-4 text-white font-bold flex items-center gap-2">
+                            <i className="fas fa-info-circle"></i> LEYENDA DE PUNTUACIÓN
+                        </div>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm text-left">
+                                <thead className="bg-slate-50 border-b text-slate-600 font-bold uppercase text-xs">
+                                    <tr>
+                                        <th className="p-4">Nivel</th>
+                                        <th className="p-4">Nombre Corto</th>
+                                        <th className="p-4">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y text-slate-700">
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="p-4 font-black text-[#004a7c]">NIVEL 0</td>
+                                        <td className="p-4 font-bold">Desconoce</td>
+                                        <td className="p-4 text-slate-500">El colaborador desconoce los fundamentos básicos de la competencia.</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="p-4 font-black text-[#004a7c]">NIVEL 1</td>
+                                        <td className="p-4 font-bold">En aprendizaje</td>
+                                        <td className="p-4 text-slate-500">El colaborador evidencia conocimiento a nivel básico, sin llegar a completar actividades de la competencia.</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="p-4 font-black text-[#004a7c]">NIVEL 2</td>
+                                        <td className="p-4 font-bold">En desarrollo</td>
+                                        <td className="p-4 text-slate-500">El colaborador logra el desarrollo de la competencia, evidencia dificultad para su término.</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="p-4 font-black text-[#004a7c]">NIVEL 3</td>
+                                        <td className="p-4 font-bold">Promedio</td>
+                                        <td className="p-4 text-slate-500">El colaborador evidencia el dominio de la competencia alineado al estándar establecido dentro del área.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
