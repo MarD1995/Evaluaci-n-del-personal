@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluación de Competencias</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -12,9 +11,24 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-      // AQUÍ PEGA TODO TU CÓDIGO DE REACT (el que empieza con "import React...")
-      // NOTA: Borra las líneas que dicen "import ... from ..." del inicio, 
-      // ya que los scripts de arriba ya los cargaron.
+      const { useState, useMemo, useCallback, useRef, useEffect } = React;
+
+      // --- TU CÓDIGO COMIENZA AQUÍ ---
+      function App() {
+          // Pega aquí desde donde dice "const AUTHORIZED_USERS" 
+          // hasta el final de tu código de React.
+          // OJO: NO pegues las líneas que dicen "import ... from ..."
+          
+          return (
+            <div className="min-h-screen bg-slate-50 p-4">
+                <h1 className="text-2xl font-bold">Acceso al Sistema</h1>
+                {/* Aquí va el resto de tu interfaz */}
+            </div>
+          );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
     </script>
 </body>
 </html>
